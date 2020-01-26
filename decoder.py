@@ -293,6 +293,7 @@ if __name__ == "__main__":
     args = parse_args()
 
     if args.file == "-":
+        print("Paste your stack trace and press enter.\n")
         file = sys.stdin
     else:
         if not os.path.exists(args.file):
@@ -317,4 +318,6 @@ if __name__ == "__main__":
     parser.parse_file(file, args.platform, args.stack_only)
     resolver.fill(parser)
 
+    print()
     print_result(parser, resolver, args.platform, args.full, args.stack_only)
+    print()
