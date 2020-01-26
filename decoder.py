@@ -284,7 +284,7 @@ def parse_args():
     parser.add_argument("-e", "--env", help="pio env name", required=True)
     parser.add_argument("-f", "--full", help="Print full stack dump", action="store_true")
     parser.add_argument("-s", "--stack_only", help="Decode only a stractrace", action="store_true")
-    parser.add_argument("file", help="The file to read the exception data from ('-' for STDIN)", default="-")
+    parser.add_argument("--file", help="The file to read the exception data from ('-' for STDIN)", default="-")
 
     return parser.parse_args()
 
