@@ -277,9 +277,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description="decode ESP Stacktraces.")
 
     parser.add_argument("-p", "--platform", help="The platform to decode from", choices=PLATFORMS.keys(),
-                        default="ESP8266")
+                        default="ESP32")
     parser.add_argument("-t", "--tool", help="Path to the xtensa toolchain",
-                        default="~/.platformio/packages/toolchain-xtensa/")
+                        default="~/.platformio/packages/toolchain-xtensa32/")
     parser.add_argument("-e", "--elf", help="path to elf file", required=True)
     parser.add_argument("-f", "--full", help="Print full stack dump", action="store_true")
     parser.add_argument("-s", "--stack_only", help="Decode only a stractrace", action="store_true")
