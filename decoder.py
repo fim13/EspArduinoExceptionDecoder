@@ -280,7 +280,8 @@ def parse_args():
                         default="ESP32")
     parser.add_argument("-t", "--tool", help="Path to the xtensa toolchain",
                         default="~/.platformio/packages/toolchain-xtensa32/")
-    parser.add_argument("-e", "--elf", help="path to elf file", required=True)
+    parser.add_argument("--path", help="path to pio project", default="")
+    parser.add_argument("-e", "--env", help="pio env name", required=True)
     parser.add_argument("-f", "--full", help="Print full stack dump", action="store_true")
     parser.add_argument("-s", "--stack_only", help="Decode only a stractrace", action="store_true")
     parser.add_argument("file", help="The file to read the exception data from ('-' for STDIN)", default="-")
@@ -306,7 +307,7 @@ if __name__ == "__main__":
     if not os.path.exists(addr2line):
         print("ERROR: addr2line not found (" + addr2line + ")")
 
-    elf_file = os.path.abspath(os.path.expanduser(args.elf))
+    elf_file = os.path.abspath(os.path.expanduser(os.path.join(args.path, ".pio/build/" + args.env + "/firmware.elf")))
     if not os.path.exists(elf_file):
         print("ERROR: elf file not found (" + elf_file + ")")
 
