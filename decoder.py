@@ -280,11 +280,11 @@ def parse_args():
                         default="ESP32")
     parser.add_argument("-t", "--tool", help="Path to the xtensa toolchain",
                         default="~/.platformio/packages/toolchain-xtensa32/")
-    parser.add_argument("--path", help="path to pio project", default="")
-    parser.add_argument("-e", "--env", help="pio env name", required=True)
+    parser.add_argument("--path", help="Path to platformio project", default="")
     parser.add_argument("-f", "--full", help="Print full stack dump", action="store_true")
     parser.add_argument("-s", "--stack_only", help="Decode only a stractrace", action="store_true")
-    parser.add_argument("--file", help="The file to read the exception data from ('-' for STDIN)", default="-")
+    parser.add_argument("--file", help="Optional input file", default=None)
+    parser.add_argument("env", help="Platformio environment name")
 
     return parser.parse_args()
 
@@ -292,7 +292,7 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
 
-    if args.file == "-":
+    if not args.file:
         print("Paste your stack trace and press enter.\n")
         file = sys.stdin
     else:

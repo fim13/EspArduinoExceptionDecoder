@@ -1,6 +1,6 @@
 # EspArduinoExceptionDecoder
 
-Python Script to decode ESP8266 Exceptions.
+Python Script to decode ESP8266 and ESP32 Exceptions.
 
 
 ## License
@@ -11,26 +11,29 @@ GPL 3.0
 ## Usage:
 
 ```
-usage: decoder.py [-h] [-p {ESP8266,ESP32}] [-t TOOL] -e ELF [-f] file
+usage: decoder.py [-h] [-p {ESP8266,ESP32}] [-t TOOL] [--path PATH] [-f] [-s] [--file FILE] env
 
 decode ESP Stacktraces.
 
 positional arguments:
-  file                  The file to read the exception data from ('-' for
-                        STDIN)
+  env                   Platformio environment name
 
 optional arguments:
   -h, --help            show this help message and exit
   -p {ESP8266,ESP32}, --platform {ESP8266,ESP32}
                         The platform to decode from
   -t TOOL, --tool TOOL  Path to the xtensa toolchain
-  -e ELF, --elf ELF     path to elf file
+  --path PATH           Path to platformio project
   -f, --full            Print full stack dump
+  -s, --stack_only      Decode only a stractrace
+  --file FILE           Optional input file
 ```
+
+ESP32 and toolchain-xtensa32 are default.
 
 The tool is the path to your xtensa toolchain. If you use [PlatformIO](http://platformio.org/) it should be `~/.platformio/packages/toolchain-xtensa` for the ESP8266 and `~/.platformio/packages/toolchain-xtensa32` for the ESP32.
 
-The elf path is the path to your built elf binary. On PlatformIO it is located at `<project-dir>/.pioenvs/<environment-name>/firmware.elf`.
+Your built elf binary is required. For PlatformIO >=2.0 projects this file it is located at `<project-dir>/.pio/build/<environment-name>/firmware.elf`. Enter your `env` name and if needed the `path` to your project.
 
 
 ## Dependencies:
@@ -41,7 +44,7 @@ The elf path is the path to your built elf binary. On PlatformIO it is located a
 
 ## Example:
 
-Given you have the following stacktrace from the ESP:
+Given you have the following stacktrace from the ESP8266:
 
 ```
 Exception (3):
